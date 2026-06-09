@@ -35,6 +35,39 @@ def tampilkan_transaksi(data):
     for t in data:
         print(f"ID: {t[0]} | Nama: {t[1]} | Berat: {t[2]}Kg | Paket: {t[3]} | Total: Rp {t[4]} | Status: {t[5]}")
     print()
+    
+def update_transaksi(data):
+    print()
+    print("--- UPDATE STATUS TRANSAKSI ---")
+    if (data == [None]):
+        print("Belum ada data transaksi yang bisa diubah.")
+        print()
+        return data
+
+    id_cari = input("Masukkan ID Transaksi yang ingin diupdate: ")
+
+    for t in data:
+        if (str(t[0]) == id_cari):
+            print(f"Data ditemukan! Status saat ini: {t[5]}")
+            print("Pilihan Status Baru: 1. Antrean | 2. Diproses | 3. Selesai")
+            pil_status = input("Pilih (1/2/3): ")
+            
+            if (pil_status == "1"):
+                t[5] = "Antrean"
+                print(f"Status transaksi ID {id_cari} berhasil diperbarui menjadi 'Antrean'!")
+            elif (pil_status == "2"):
+                t[5] = "Diproses"
+                print(f"Status transaksi ID {id_cari} berhasil diperbarui menjadi 'Diproses'!")
+            elif (pil_status == "3"):
+                t[5] = "Selesai"
+                print(f"Status transaksi ID {id_cari} berhasil diperbarui menjadi 'Selesai'!")
+            else:
+                print("Pilihan status tidak valid. Status tidak diubah.")
+            print()
+            return data  
+    print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
+    print()
+    return data
 
 
 def main():
@@ -64,7 +97,7 @@ def main():
         elif pilihan == "6":
             data_transaksi = hapus_transaksi(data_transaksi)
         elif pilihan == "7":
-            print("Semoga Sukses!")
+            print("Sukses \U0001f600!")
             program_berjalan = False
         else:
             print("Pilihan tidak valid! Silakan coba lagi.")
