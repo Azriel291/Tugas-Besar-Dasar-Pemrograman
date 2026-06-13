@@ -116,5 +116,19 @@ def main():
         else:
             print("Pilihan tidak valid! Silakan coba lagi.")
             print()
+
+def hitung_pendapatan(data, jumlah):
+    print()
+    print("--- TOTAL PENDAPATAN ---")
+    if jumlah == 0:
+        print("Belum ada data transaksi.")
+        print()
+        return
+    
+    total = 0
+    for i in range(jumlah):
+        total += data[i][4]
+    print(f"Total Pendapatan: Rp {total}")
+    print()
 if __name__ == '__main__':
     main()
