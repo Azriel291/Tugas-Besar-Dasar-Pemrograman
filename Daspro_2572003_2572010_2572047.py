@@ -116,35 +116,46 @@ def cari_transaksi(data, jumlah):
         print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
     print()
 
+# Kamus Data
+# data: array 2 dimensi untuk menyimpan data transaksi
+# array: array penunjuk (array[0] = jumlah transaksi, array[1] = ID berikutnya)
+# id_cari: ID transaksi yang akan dihapus(int)
+# found: penanda apakah data ditemukan(boolean)
+# i: indeks utk pencarian data(int)
+# j: indeks utk menggeser data(int)
+# k: indeks kolom array 2 dimensi(int)
 def hapus_transaksi(data, array):
     print()
     print("--- HAPUS DATA TRANSAKSI ---")
-    if array[0] == 0:
+    if (array[0] == 0):
         print("Belum ada data transaksi yang bisa dihapus.")
         print()
         return
     
     id_cari = int(input("Masukkan ID Transaksi yang ingin dihapus: "))
+    
     found = False
     for i in range(array[0]):
-        if (data[i][0]) == id_cari:
+        if (data[i][0] == id_cari and found == False):
             found = True
+            
             for j in range(i, array[0] - 1):
-                data[j] = data[j + 1]
-            data[array[0] - 1] = [None] * 6
+                for k in range(6):
+                    data[j][k] = data[j + 1][k]
+                    
+            for k in range(6):
+                data[array[0] - 1][k] = [None]
             array[0] -= 1
-            print(f"Transaksi dengan ID {id_cari} berhasil dihapus!")
-            break
-
-    if found == False:
-        print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
+            print("Data transaksi berhasil dihapus!")
+    if (found == False):
+        print("ID transaksi tidak ditemukan.")
     print()
 
 def main():
     baris = 100
     kolom = 6
     data_transaksi = [[None] * kolom for i in range(baris)]
-    array = [0, 1] #penjelasan(biargasalah): array[0] = sebagai jumlah transaksi | array[1] = sebagai counter(id)
+    array = [0, 1] 
     program_berjalan = True
     while program_berjalan == True:
         print("=== SYSTEM MANAJEMEN LAUNDRY ===")
