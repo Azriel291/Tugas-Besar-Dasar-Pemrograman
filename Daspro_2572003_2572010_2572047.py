@@ -82,6 +82,64 @@ def update_transaksi(data, jumlah):
     print()
 
 
+def hitung_pendapatan(data, jumlah):
+    print()
+    print("--- TOTAL PENDAPATAN ---")
+    if jumlah == 0:
+        print("Belum ada data transaksi.")
+        print()
+        return
+    
+    total = 0
+    for i in range(jumlah):
+        total += data[i][4]
+    print(f"Total Pendapatan: Rp {total}")
+    print()
+
+def cari_transaksi(data, jumlah):
+    print()
+    print("--- CARI TRANSAKSI ---")
+    if jumlah == 0:
+        print("Belum ada data transaksi.")
+        print()
+        return
+    
+    id_cari = int(input("Masukkan ID Transaksi yang ingin dicari: "))
+    found = False
+    for i in range(jumlah):
+        if (data[i][0]) == id_cari:
+            found = True
+            print(f"Data ditemukan! ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
+            break
+
+    if found == False:
+        print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
+    print()
+
+def hapus_transaksi(data, array):
+    print()
+    print("--- HAPUS DATA TRANSAKSI ---")
+    if array[0] == 0:
+        print("Belum ada data transaksi yang bisa dihapus.")
+        print()
+        return
+    
+    id_cari = int(input("Masukkan ID Transaksi yang ingin dihapus: "))
+    found = False
+    for i in range(array[0]):
+        if (data[i][0]) == id_cari:
+            found = True
+            for j in range(i, array[0] - 1):
+                data[j] = data[j + 1]
+            data[array[0] - 1] = [None] * 6
+            array[0] -= 1
+            print(f"Transaksi dengan ID {id_cari} berhasil dihapus!")
+            break
+
+    if found == False:
+        print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
+    print()
+
 def main():
     baris = 100
     kolom = 6
@@ -117,18 +175,6 @@ def main():
             print("Pilihan tidak valid! Silakan coba lagi.")
             print()
 
-def hitung_pendapatan(data, jumlah):
-    print()
-    print("--- TOTAL PENDAPATAN ---")
-    if jumlah == 0:
-        print("Belum ada data transaksi.")
-        print()
-        return
-    
-    total = 0
-    for i in range(jumlah):
-        total += data[i][4]
-    print(f"Total Pendapatan: Rp {total}")
-    print()
+
 if __name__ == '__main__':
     main()
