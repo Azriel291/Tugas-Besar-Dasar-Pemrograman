@@ -4,23 +4,47 @@ def tambah_transaksi(data, array):
     nama = input("Masukkan Nama Pelanggan: ")
     berat = float(input("Masukkan Berat Laundry (Kg): "))
     print("Pilihan Paket: 1. Reguler (Rp 6.000) | 2. Ekspres (Rp 10.000)")
-    pilihan = input("Pilih Paket (1/2): ")
-    
-    if pilihan == "1":
-        paket = "Reguler"
-        harga_per_kg = 6000
-    else:
-        paket = "Ekspres"
-        harga_per_kg = 10000
+
+
+    input_valid = False
+    while input_valid == False:
+        pilihan = input("Pilih Paket (1/2): ")
+        
+        if pilihan == "1":
+            paket = "Reguler"
+            harga_per_kg = 6000
+            input_valid = True
+            
+        elif pilihan == "2":
+            paket = "Ekspres"
+            harga_per_kg = 10000
+            input_valid = True
+            
+        else:
+            print("Pilihan tidak valid! Silakan masukkan angka 1 atau 2.")
+            print()
+        
 
     harga_dasar = berat * harga_per_kg    
-    member = input("Punya kartu member? (ya/tidak): ")
     
-    if member == "ya":
-        diskon = harga_dasar * 0.10
-        total_harga = harga_dasar - diskon
-    else:
-        total_harga = harga_dasar
+    member_valid = False
+    while member_valid == False:
+        member = input("Punya kartu member? (ya/tidak): ")
+        
+        if member == "ya":
+            diskon = harga_dasar * 0.10
+            total_harga = harga_dasar - diskon
+            member_valid = True
+            
+        elif member == "tidak":
+            total_harga = harga_dasar
+            member_valid = True
+            
+        else:
+            
+            print("Pilihan tidak valid! Silakan masukkan 'ya' atau 'tidak'.")
+            print()
+            
     status = "Antrean"
 
     jumlah = array[0]
@@ -98,22 +122,96 @@ def hitung_pendapatan(data, jumlah):
 
 def cari_transaksi(data, jumlah):
     print()
-    print("--- CARI TRANSAKSI ---")
+    print("--- FITUR CARI & URUTKAN TRANSAKSI ---")
     if jumlah == 0:
         print("Belum ada data transaksi.")
         print()
         return
     
-    id_cari = int(input("Masukkan ID Transaksi yang ingin dicari: "))
-    found = False
-    for i in range(jumlah):
-        if (data[i][0]) == id_cari:
-            found = True
-            print(f"Data ditemukan! ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
-            break
+    print("Pilih Operasi: 1. Pencarian (Search) | 2. Pengurutan (Sort)")
+    operasi = input("Pilih (1/2): ")
+    
+    if operasi == "1":
+        print()
+        print("Pencarian Berdasarkan:")
+        print("1. ID Transaksi")
+        print("2. Nama Pelanggan")
+        print("3. Jenis Paket")
+        print("4. Status Laundry")
+        pilihan_cari = input("Pilih (1-4): ")
+        
+        found = False
+        
+        if pilihan_cari == "1":
+            id_cari = int(input("Masukkan ID Transaksi: "))
+            for i in range(jumlah):
+                if data[i][0] == id_cari:
+                    found = True
+                    print(f"ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
+                    
+        elif pilihan_cari == "2":
+            nama_cari = input("Masukkan Nama Pelanggan: ")
+            for i in range(jumlah):
+                if data[i][1] == nama_cari:
+                    found = True
+                    print(f"ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
+                    
+        elif pilihan_cari == "3":
+            paket_cari = input("Masukkan Jenis Paket (Reguler/Ekspres): ")
+            for i in range(jumlah):
+                if data[i][3] == paket_cari:
+                    found = True
+                    print(f"ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
+                    
+        elif pilihan_cari == "4":
+            status_cari = input("Masukkan Status (Antrean/Diproses/Selesai): ")
+            for i in range(jumlah):
+                if data[i][5] == status_cari:
+                    found = True
+                    print(f"ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
+        else:
+            print("Pilihan menu pencarian tidak valid.")
+            return
 
-    if found == False:
-        print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
+        if found == False:
+            print("Data yang Anda cari tidak ditemukan.")
+            
+    elif operasi == "2":
+        print()
+        print("Pengurutan Berdasarkan:")
+        print("1. Harga Terbesar ke Terkecil")
+        print("2. Harga Terkecil ke Terbesar")
+        print("3. Berat Terberat ke Teringan")
+        print("4. Berat Teringan ke Terberat")
+        pilihan_sort = input("Pilih (1-4): ")
+        
+        if pilihan_sort != "1" and pilihan_sort != "2" and pilihan_sort != "3" and pilihan_sort != "4":
+            print("Pilihan menu pengurutan tidak valid.")
+            return
+        
+        data_copy = [[None] * kolom for p in range(jumlah)]
+        for i in range(jumlah):
+            for j in range(kolom):
+                data_copy[i][j] = data[i][j]
+        
+        for p in range(1, jumlah, 1):
+            tem = data_copy[p]
+            i = p - 1
+            
+            while (pilihan_sort == "1" and i >= 0 and tem[4] > data_copy[i][4]) or (pilihan_sort == "2" and i >= 0 and tem[4] < data_copy[i][4]) or (pilihan_sort == "3" and i >= 0 and tem[2] > data_copy[i][2]) or (pilihan_sort == "4" and i >= 0 and tem[2] < data_copy[i][2]):
+                
+                data_copy[i + 1] = data_copy[i]
+                i = i - 1 
+                
+            data_copy[i + 1] = tem
+                
+        print()
+        print("--- HASIL PENGURUTAN DATA ---")
+        for i in range(jumlah):
+            print(f"ID: {data_copy[i][0]} | Nama: {data_copy[i][1]} | Berat: {data_copy[i][2]}Kg | Paket: {data_copy[i][3]} | Total: Rp {data_copy[i][4]} | Status: {data_copy[i][5]}")
+            
+    else:
+        print("Pilihan operasi tidak valid.")
     print()
 
 # Kamus Data
@@ -140,10 +238,10 @@ def hapus_transaksi(data, array):
             found = True
             
             for j in range(i, array[0] - 1):
-                for k in range(6):
+                for k in range(kolom):
                     data[j][k] = data[j + 1][k]
                     
-            for k in range(6):
+            for k in range(kolom):
                 data[array[0] - 1][k] = [None]
             array[0] -= 1
             print("Data transaksi berhasil dihapus!")
@@ -153,7 +251,7 @@ def hapus_transaksi(data, array):
 
 def main():
     baris = 100
-    kolom = 6
+    
     data_transaksi = [[None] * kolom for i in range(baris)]
     array = [0, 1] 
     program_berjalan = True
@@ -163,7 +261,7 @@ def main():
         print("2. Melihat Semua Transaksi")
         print("3. Update Status Transaksi")
         print("4. Total Pendapatan")
-        print("5. Cari Transaksi")
+        print("5. Cari atau Urutkan Transaksi")
         print("6. Hapus Data")
         print("7. Keluar")
         pilihan = input("Pilih Menu (1-7): ")
@@ -188,4 +286,5 @@ def main():
 
 
 if __name__ == '__main__':
+    kolom = 6
     main()
