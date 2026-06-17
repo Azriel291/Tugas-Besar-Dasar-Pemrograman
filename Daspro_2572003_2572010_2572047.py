@@ -266,7 +266,7 @@ def cari_transaksi(data, jumlah):
 # Kamus Data
 # data: array 2 dimensi untuk menyimpan data transaksi
 # array: array penunjuk (array[0] = jumlah transaksi, array[1] = ID berikutnya)
-# id_cari: ID transaksi yang akan dihapus(int)
+# id_cari: id transaksi yang akan dihapus(int)
 # found: penanda apakah data ditemukan(boolean)
 # i: indeks utk pencarian data(int)
 # j: indeks utk menggeser data(int)
@@ -297,6 +297,7 @@ def hapus_transaksi(data, array):
     if (found == False):
         print("ID transaksi tidak ditemukan.")
     print()
+    
 # Kamus Data
 # baris = jumlah baris maksimum dalam array
 # program_berjalan = penanda apakah program berjalan atau tidak(bool)
