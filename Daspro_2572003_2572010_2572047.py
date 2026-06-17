@@ -297,7 +297,12 @@ def hapus_transaksi(data, array):
     if (found == False):
         print("ID transaksi tidak ditemukan.")
     print()
-
+# Kamus Data
+# baris = jumlah baris maksimum dalam array
+# program_berjalan = penanda apakah program berjalan atau tidak(bool)
+# array = [jumlah_transaksi, id]
+# pilihan = var pilihan menu 1-7(str)
+# 
 def main():
     baris = 100
     
