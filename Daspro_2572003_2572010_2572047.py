@@ -1,3 +1,20 @@
+# Kamus Data
+# data: array 2 dimensi utk menyimpan data transaksi laundry
+# array: array utk menyimpan jumlah transaksi dan ID berikutnya
+# nama: var. utk menyimpan nama pelanggan(str)
+# berat: var. utk menyimpan berat laundry dalam kilogram(float)
+# pilihan: var. utk menyimpan pilihan paket laundry(str)
+# input_valid: var. utk menandai valid atau tidaknya pilihan paket(bool)
+# paket: var. utk menyimpan jenis paket laundry(str)
+# harga_per_kg: var. utk menyimpan harga per kilogram sesuai paket(int)
+# harga_dasar: var. utk menyimpan total harga sebelum diskon(float)
+# member_valid: var. utk menandai valid atau tidaknya input member(bool)
+# member: var. utk menyimpan status kepemilikan kartu member(str)
+# diskon: var. utk menyimpan nilai diskon member(float)
+# total_harga: var. utk menyimpan total harga setelah diskon(float)
+# status: var. utk menyimpan status transaksi(str)
+# jumlah: var. utk menyimpan jumlah transaksi saat ini(int)
+# id: var. utk menyimpan ID transaksi(int)
 def tambah_transaksi(data, array):
 
     print("--- INPUT TRANSAKSI LAUNDRY ---")
@@ -60,6 +77,10 @@ def tambah_transaksi(data, array):
     print("Transaksi berhasil ditambahkan!")
     print()
 
+# Kamus Data
+# data: array 2 dimensi utk menyimpan data transaksi laundry
+# jumlah: var. utk menyimpan jumlah data transaksi(int)
+# i: var. utk menyimpan indeks perulangan(int)
 def tampilkan_transaksi(data, jumlah):
     print()
     print("--- DATA SEMUA TRANSAKSI ---")
@@ -72,6 +93,13 @@ def tampilkan_transaksi(data, jumlah):
         print(f"ID: {data[i][0]} | Nama: {data[i][1]} | Berat: {data[i][2]}Kg | Paket: {data[i][3]} | Total: Rp {data[i][4]} | Status: {data[i][5]}")
     print()
     
+# Kamus Data
+# data: array 2 dimensi utk menyimpan data transaksi laundry
+# jumlah: var. utk menyimpan jumlah data transaksi(int)
+# id_cari: var. utk menyimpan ID transaksi yang ingin diupdate(int)
+# found: var. utk menandai apakah data ditemukan atau tidak(bool)
+# i: var. utk menyimpan indeks perulangan dan pencarian data(int)
+# pil_status: var. utk menyimpan pilihan status baru(str)
 def update_transaksi(data, jumlah):
     print()
     print("--- UPDATE STATUS TRANSAKSI ---")
@@ -105,7 +133,11 @@ def update_transaksi(data, jumlah):
         print(f"Transaksi dengan ID {id_cari} tidak ditemukan.")
     print()
 
-
+# Kamus Data
+# data: array 2 dimensi utk menyimpan data transaksi laundry
+# jumlah: var. utk menyimpan jumlah data transaksi(int)
+# total: var. utk menyimpan total pendapatan seluruh transaksi(int)
+# i: var. utk menyimpan indeks perulangan(int)
 def hitung_pendapatan(data, jumlah):
     print()
     print("--- TOTAL PENDAPATAN ---")
@@ -120,6 +152,23 @@ def hitung_pendapatan(data, jumlah):
     print(f"Total Pendapatan: Rp {total}")
     print()
 
+# Kamus Data
+# data: array 2 dimensi utk menyimpan data transaksi laundry
+# jumlah: var. utk menyimpan jumlah data transaksi(int)
+# operasi: var. utk menyimpan pilihan operasi (Search atau Sort)(str)
+# pilihan_cari: var. utk menyimpan pilihan kategori pencarian(str)
+# id_cari: var. utk menyimpan ID transaksi yang dicari(int)
+# nama_cari: var. utk menyimpan nama pelanggan yang dicari(str)
+# paket_cari: var. utk menyimpan jenis paket yang dicari(str)
+# status_cari: var. utk menyimpan status laundry yang dicari(str)
+# found: var. utk menandai apakah data ditemukan atau tidak(bool)
+# pilihan_sort: var. utk menyimpan pilihan kategori pengurutan(str)
+# data_copy: array 2 dimensi utk menyimpan salinan data transaksi saat proses sorting
+# tem: array 1 dimensi utk menyimpan data sementara saat proses sorting
+# i: var. utk menyimpan indeks perulangan dan pencarian data(int)
+# j: var. utk menyimpan indeks kolom saat menyalin data(int)
+# p: var. utk menyimpan indeks perulangan pada proses insertion sort(int)
+# kolom: var. utk menyimpan jumlah kolom pada data transaksi(int)
 def cari_transaksi(data, jumlah):
     print()
     print("--- FITUR CARI & URUTKAN TRANSAKSI ---")
